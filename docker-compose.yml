@@ -1,0 +1,46 @@
+version: '3'
+services:
+  ### Posgres database for Inventory
+  db-car-inventory:
+    container_name: db-car-inventory
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: car_inventory_db
+      POSTGRES_USER: josefontalvo
+      POSTGRES_PASSWORD: Test123
+    ports:
+      - 5431:5431
+    expose:
+      - 5431
+    command: -p 5431
+
+  ### MySQL database for Orders
+  db-booking:
+    container_name: db-booking
+    image:  postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: booking_db
+      POSTGRES_USER: josefontalvo
+      POSTGRES_PASSWORD: Test123
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    command: -p 5432
+
+  ### Posgres database for Products
+  db-payments:
+    container_name: db-payments
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: payments_db
+      POSTGRES_USER: josefontalvo
+      POSTGRES_PASSWORD: Test123
+    ports:
+      - 5433:5433
+    expose:
+      - 5433
+    command: -p 5433
