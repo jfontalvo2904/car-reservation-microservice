@@ -15,7 +15,7 @@ services:
       - 5431
     command: -p 5431
 
-  ### MySQL database for Orders
+  ### postgres database for orders or booking
   db-booking:
     container_name: db-booking
     image:  postgres:15-alpine
@@ -30,7 +30,7 @@ services:
       - 5432
     command: -p 5432
 
-  ### Posgres database for Products
+  ### Posgres database for payments
   db-payments:
     container_name: db-payments
     image: postgres:15-alpine
