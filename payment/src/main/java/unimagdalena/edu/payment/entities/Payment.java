@@ -2,14 +2,16 @@ package unimagdalena.edu.payment.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "payment")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getters
-@Setters
+@Getter
+@Setter
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

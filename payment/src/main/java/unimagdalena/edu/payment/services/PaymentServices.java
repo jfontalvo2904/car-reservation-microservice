@@ -1,8 +1,7 @@
 package unimagdalena.edu.payment.services;
 
 import java.util.List;
-
-import com.example.prueba.entities.Payment;
+import unimagdalena.edu.payment.entities.Payment;
 
 public interface PaymentServices {
     Payment create(Payment payment);

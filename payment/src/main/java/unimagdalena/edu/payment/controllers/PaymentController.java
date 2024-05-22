@@ -1,10 +1,12 @@
-package com.example.prueba.controlers;
+package unimagdalena.edu.payment.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.prueba.services.ClienteServices;
-import com.example.prueba.entities.Cliente;
-import com.example.prueba.exeptions.ModelNotFoundException;
+
+
+import unimagdalena.edu.payment.entities.Payment;
+import unimagdalena.edu.payment.services.PaymentServices;
+
 
 import java.util.List;
 
@@ -25,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/payment")
 
-public class PaymentControler {
+public class PaymentController {
     @Autowired
     private PaymentServices paymentService;
 
@@ -38,7 +40,7 @@ public class PaymentControler {
     public ResponseEntity<Payment> findById(@PathVariable("id") Integer idPayment) {
         Payment payment = paymentService.findById(idPayment);
         if (payment == null) {
-            throw new ModelNotFoundException("el pago que desea obtener no existe");
+            throw new RuntimeException("el pago que desea obtener no existe");
         }
         return new ResponseEntity<>(payment, HttpStatus.OK);
     }

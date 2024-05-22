@@ -6,11 +6,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.prueba.entities.Payment;
-import com.example.prueba.repositories.PaymentRepository;
+import unimagdalena.edu.payment.entities.Payment;
+import unimagdalena.edu.payment.repositories.PaymentRepository;
+
 
 @Service
-public class PaymentServicesImp implements PaymentServices {
+public class PaymentServicesIMPL implements PaymentServices {
     @Autowired
     private PaymentRepository paymentRepo;
 
