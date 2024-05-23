@@ -8,11 +8,11 @@
 		<version>3.2.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.unimag</groupId>
+	<groupId>unimagdalena.edu</groupId>
 	<artifactId>booking</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>booking</name>
-	<description>microservicio encargado de hacer reservas de autos</description>
+	<description>microservicio que se encargará de manejar el inventario en las reservas de autos</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.1</spring-cloud.version>
@@ -122,7 +122,7 @@
 						<!-- other annotation processors -->
 					</annotationProcessorPaths>
 				</configuration>
-        	</plugin>
+        </plugin>
 		</plugins>
 	</build>
 

@@ -16,19 +16,19 @@ services:
     command: -p 5431
 
   ### postgres database for orders or booking
-  db-booking:
-    container_name: db-booking
-    image:  postgres:15-alpine
+  db-booking_db:
+    container_name: db-booking_db
+    image: postgres:15-alpine
     restart: unless-stopped
     environment:
       POSTGRES_DB: booking_db
       POSTGRES_USER: josefontalvo
       POSTGRES_PASSWORD: Test123
     ports:
-      - 5432:5432
+      - 5435:5435
     expose:
-      - 5432
-    command: -p 5432
+      - 5435
+    command: -p 5435
 
   ### Posgres database for payments
   db-payments:
