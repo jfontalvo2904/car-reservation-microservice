@@ -71,13 +71,15 @@ services:
   keycloak:
     container_name: keycloak
     image: quay.io/keycloak/keycloak:21.0.2
-    command: ["start-dev"]
+    command: ["start-dev", "--import-realm"]
     ports:
       - 8181:8181
     expose:
       - 8181
     depends_on:
       - db-keycloak
+    volumes:
+      - ./data/keycloak-realm:/opt/keycloak/data/import
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: db-keycloak
