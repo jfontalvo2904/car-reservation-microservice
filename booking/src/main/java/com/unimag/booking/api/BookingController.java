@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.unimag.booking.dto.CreateBookingDto;
 import com.unimag.booking.dto.ResponseBookingDto;
+import com.unimag.booking.exceptions.carInventory.CarReserveException;
 import com.unimag.booking.services.BookingServiceImpl;
 
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 
 @RestController
@@ -25,9 +27,13 @@ public class BookingController {
     private final BookingServiceImpl bookingService;
     
     @PostMapping("")
-    public ResponseEntity<ResponseBookingDto> postMethodName(@RequestBody CreateBookingDto createBookingDto) {
-             
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.bookingService.createBooking(createBookingDto));
+    public ResponseEntity<ResponseBookingDto> postMethodName(@RequestBody CreateBookingDto createBookingDto, @RequestHeader("Authorization") String authorizationHeader) {
+        try { 
+            return ResponseEntity.status(HttpStatus.CREATED).body(this.bookingService.createBooking(createBookingDto,authorizationHeader));
+        } catch (Exception e) {
+            throw new CarReserveException("No se ha podido reservar el auto, verifique que esté disponible" );
+        }    
+        
     }
 
     @GetMapping("/{id}")

@@ -4,6 +4,7 @@ package com.unimag.booking.services;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import com.unimag.booking.client.CarInventoryClient;
 import com.unimag.booking.dto.BookingMapperImpl;
@@ -28,14 +29,15 @@ public class BookingServiceImpl implements BookingService{
     
 
     @Override
-    public ResponseBookingDto createBooking(CreateBookingDto createBookingDto) throws NotFoundException  {
+    public ResponseBookingDto createBooking(CreateBookingDto createBookingDto, @RequestHeader("Authorization") String bearerToken) throws NotFoundException  {
         
         if(createBookingDto.carId().isEmpty()) throw new NotFoundException();
 
         try {
-            this.carInventoryClient.carReserve(createBookingDto.carId());
+            this.carInventoryClient.carReserve(createBookingDto.carId(), bearerToken);
         } catch (Exception e) {
-            throw new CarReserveException("No se ha podido reservar el auto, verifique que esté disponible");
+            throw new CarReserveException("No se ha podido reservar el auto, verifique que esté disponible," +
+            "el token recivido fue: " + bearerToken);
         }
 
         Booking newBooking = this.bookingMapper.createBookingDtoToBooking(createBookingDto);

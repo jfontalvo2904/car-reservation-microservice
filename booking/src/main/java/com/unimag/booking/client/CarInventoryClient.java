@@ -4,6 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import com.unimag.booking.config.FeignClientConfig;
 import com.unimag.booking.dto.carInventory.CarReserveResponse;
@@ -13,6 +14,6 @@ import com.unimag.booking.dto.carInventory.CarReserveResponse;
 public interface CarInventoryClient {
 
     @PostMapping(value = "/api/car-inventory/reserve", consumes = MediaType.APPLICATION_JSON_VALUE)
-    CarReserveResponse carReserve(@RequestBody String id);
+    CarReserveResponse carReserve(@RequestBody String id,@RequestHeader("Authorization") String bearerToken);
 
 }
